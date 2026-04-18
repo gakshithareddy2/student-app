@@ -1,34 +1,51 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import StudentForm from "./components/StudentForm";
+import StudentTable from "./components/StudentTable";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    const data = localStorage.getItem("students");
+    setStudents(data ? JSON.parse(data) : []);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("students", JSON.stringify(students));
+  }, [students]);
+
+  const addStudent = (student) => {
+    const exists = students.some((s) => s.roll === student.roll);
+    if (exists) {
+      alert("Roll number already exists");
+      return;
+    }
+    setStudents([...students, student]);
+  };
+
+  const deleteStudent = (id) => {
+    setStudents(students.filter((s) => s.id !== id));
+  };
+
+  const clearAll = () => {
+    if (window.confirm("Clear all students?")) {
+      setStudents([]);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="container">
+      <h1>🎓 Student Registration</h1>
+
+      <StudentForm addStudent={addStudent} />
+
+      <StudentTable
+        students={students}
+        deleteStudent={deleteStudent}
+        clearAll={clearAll}
+      />
+    </div>
   );
 }
 

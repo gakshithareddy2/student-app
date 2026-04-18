@@ -1,42 +1,87 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+  background: #0f172a;
+  color: white;
+  padding: 20px;
+  font-family: Arial;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.container {
+  max-width: 900px;
+  margin: auto;
 }
 
 .card {
-  padding: 2em;
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 20px;
 }
 
-.read-the-docs {
-  color: #888;
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.btn {
+  padding: 10px;
+  background: #22c55e;
+  border: none;
+  cursor: pointer;
+}
+
+.danger {
+  background: red;
+}
+
+.table-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #1f2937;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #0b1220;
+}
+
+td {
+  background: #111827;
+}
+
+.delete-btn {
+  background: red;
+  color: white;
+  padding: 5px 10px;
+}
+
+.empty {
+  text-align: center;
+  margin-top: 10px;
 }
