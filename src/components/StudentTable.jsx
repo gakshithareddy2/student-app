@@ -1,4 +1,4 @@
-function StudentTable({ students, deleteStudent, clearAll }) {
+function StudentTable({ students, deleteStudent, editStudent, clearAll }) {
   return (
     <div className="card">
       <div className="table-head">
@@ -9,7 +9,7 @@ function StudentTable({ students, deleteStudent, clearAll }) {
       </div>
 
       {students.length === 0 ? (
-        <p className="empty">No students yet. Add one 👆</p>
+        <p className="empty">No students found</p>
       ) : (
         <table>
           <thead>
@@ -32,6 +32,7 @@ function StudentTable({ students, deleteStudent, clearAll }) {
                 <td>{s.course}</td>
                 <td>{s.gender}</td>
                 <td>
+                  <button onClick={() => editStudent(s)}>Edit</button>
                   <button
                     className="delete-btn"
                     onClick={() => deleteStudent(s.id)}

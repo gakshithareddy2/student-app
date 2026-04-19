@@ -1,10 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function StudentForm({ addStudent }) {
+function StudentForm({ saveStudent, editStudent }) {
   const [name, setName] = useState("");
   const [roll, setRoll] = useState("");
   const [course, setCourse] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("Male");
+
+  // ✅ Courses array (CORRECT PLACE)
+  const courses = [
+    "MERN",
+    "Frontend",
+    "Backend",
+    "Full Stack",
+    "Python",
+    "Java",
+    "Data Science",
+    "Machine Learning",
+    "Artificial Intelligence",
+    "Cyber Security",
+    "Cloud Computing",``
+  ];
+
+  // Fill form when editing
+  useEffect(() => {
+    if (editStudent) {
+      setName(editStudent.name);
+      setRoll(editStudent.roll);
+      setCourse(editStudent.course);
+      setGender(editStudent.gender);
+    }
+  }, [editStudent]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,8 +39,8 @@ function StudentForm({ addStudent }) {
       return;
     }
 
-    addStudent({
-      id: Date.now(),
+    saveStudent({
+      id: editStudent ? editStudent.id : Date.now(),
       name,
       roll,
       course,
@@ -25,32 +50,37 @@ function StudentForm({ addStudent }) {
     setName("");
     setRoll("");
     setCourse("");
-    setGender("");
+    setGender("Male");
   };
 
   return (
     <form onSubmit={handleSubmit} className="card">
+      {/* Name */}
       <input
-        type="text"
-        placeholder="Student Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        placeholder="Student Name"
       />
 
+      {/* Roll */}
       <input
-        type="text"
-        placeholder="Roll Number"
         value={roll}
         onChange={(e) => setRoll(e.target.value)}
+        placeholder="Roll Number"
       />
 
+      {/* ✅ Course Dropdown */}
       <select value={course} onChange={(e) => setCourse(e.target.value)}>
         <option value="">Select Course</option>
-        <option value="MERN Stack">MERN Stack</option>
-        <option value="Frontend">Frontend</option>
-        <option value="Python">Python</option>
+
+        {courses.map((c, index) => (
+          <option key={index} value={c}>
+            {c}
+          </option>
+        ))}
       </select>
 
+      {/* Gender */}
       <div className="radio-group">
         <label>
           <input
@@ -83,7 +113,10 @@ function StudentForm({ addStudent }) {
         </label>
       </div>
 
-      <button className="btn">Add Student</button>
+      {/* Button */}
+      <button className="btn">
+        {editStudent ? "Update Student" : "Add Student"}
+      </button>
     </form>
   );
 }

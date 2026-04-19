@@ -1,87 +1,159 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
 }
 
+/* Body - CENTER EVERYTHING */
 body {
-  background: #0f172a;
-  color: white;
-  padding: 20px;
-  font-family: Arial;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #f1f5f9;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Container */
 .container {
+  width: 100%;
   max-width: 900px;
-  margin: auto;
+  padding: 20px;
 }
 
-.card {
-  background: #111827;
-  border: 1px solid #1f2937;
-  border-radius: 14px;
-  padding: 18px;
+/* Heading */
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+h3 {
+  text-align: center;
+  color: #94a3b8;
   margin-bottom: 20px;
 }
 
+/* Card */
+.card {
+  background: #111827;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Inputs */
 input,
 select {
   width: 100%;
   padding: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   border-radius: 10px;
+  border: 1px solid #334155;
+  background: #020617;
+  color: white;
+  transition: 0.3s;
 }
 
+input:focus,
+select:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 5px #22c55e;
+  outline: none;
+}
+
+/* Radio */
 .radio-group {
   display: flex;
-  gap: 15px;
+  justify-content: space-around;
   margin: 10px 0;
 }
 
+/* Buttons */
 .btn {
-  padding: 10px;
-  background: #22c55e;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
   border: none;
+  font-weight: bold;
   cursor: pointer;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #022c22;
+  transition: 0.3s;
 }
 
+.btn:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+/* Danger button */
 .danger {
-  background: red;
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: white;
+  width: auto;
+  padding: 8px 14px;
 }
 
+/* Table header */
 .table-head {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
+/* Table */
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 10px;
 }
 
-th,
-td {
-  border: 1px solid #1f2937;
-  padding: 10px;
-  text-align: center;
-}
-
+/* Table head */
 th {
-  background: #0b1220;
+  background: #020617;
+  color: #38bdf8;
+  padding: 12px;
 }
 
+/* Table rows */
 td {
-  background: #111827;
+  padding: 12px;
+  border-top: 1px solid #1e293b;
 }
 
+/* Row hover */
+tr:hover {
+  background: #1e293b;
+}
+
+/* Delete button */
 .delete-btn {
-  background: red;
+  background: #ef4444;
+  border: none;
   color: white;
-  padding: 5px 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 5px;
 }
 
+.delete-btn:hover {
+  background: #b91c1c;
+}
+
+/* Empty message */
 .empty {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 15px;
+  color: #94a3b8;
+}
+
+/* Placeholder */
+input::placeholder {
+  color: #64748b;
 }
